@@ -99,6 +99,72 @@ services:
 
 ---
 
+### 🔧 Troubleshooting yang Dialami
+
+| Masalah | Penyebab | Solusi |
+|---|---|---|
+| `docker: command not found` di WSL | WSL Integration belum diaktifkan di Docker Desktop | Docker Desktop → Settings → Resources → WSL Integration → aktifkan toggle untuk distro Ubuntu |
+| `git remote add origin` error "already exists" | Remote sudah pernah ditambahkan sebelumnya | Gunakan `git remote set-url origin <url>` untuk update, bukan `add` |
+| `Authentication failed` saat `git push` | GitHub tidak lagi menerima password akun biasa untuk operasi Git via command line (sejak 2021) | Gunakan **Personal Access Token (PAT)** sebagai pengganti password |
+
+---
+
+## 🔗 Setup Git & Push ke GitHub
+
+### 1. Inisialisasi Git di folder project
+
+```bash
+git init
+git add README.md
+git commit -m "Day 1: Linux CLI basics + Docker fundamentals"
+```
+
+### 2. Konfigurasi identitas Git (sekali saja, berlaku global)
+
+```bash
+git config --global user.name "nama-kamu"
+git config --global user.email "email-kamu@example.com"
+```
+
+### 3. Hubungkan ke repo GitHub
+
+```bash
+git branch -M main
+git remote add origin https://github.com/USERNAME/devops-homelab-journey.git
+
+# Kalau muncul error "remote origin already exists", pakai ini sebagai gantinya:
+git remote set-url origin https://github.com/USERNAME/devops-homelab-journey.git
+```
+
+### 4. Autentikasi dengan Personal Access Token (PAT)
+
+GitHub tidak menerima password akun biasa untuk `git push` via terminal. Perlu bikin token khusus:
+
+1. Buka [github.com/settings/tokens](https://github.com/settings/tokens)
+2. **Generate new token (classic)**
+3. Isi nama token, expiration, dan centang scope **`repo`**
+4. **Generate token**, lalu **copy** (hanya muncul sekali!)
+
+### 5. Push ke GitHub
+
+```bash
+git push -u origin main
+```
+
+Saat diminta login:
+- **Username**: username GitHub kamu
+- **Password**: paste **Personal Access Token** (bukan password akun biasa)
+
+### 6. Untuk update selanjutnya (setelah remote & PAT sudah di-setup)
+
+```bash
+git add README.md
+git commit -m "Day 2: <deskripsi progress>"
+git push
+```
+
+---
+
 ## 🗺️ Roadmap Selanjutnya
 
 - [ ] Docker networking & volumes (persistent data)
@@ -119,3 +185,4 @@ services:
 ---
 
 *Catatan pribadi — belajar DevOps dari nol, homelab di laptop Windows.*
+
