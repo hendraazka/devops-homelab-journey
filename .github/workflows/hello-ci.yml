@@ -1,0 +1,23 @@
+name: Hello CI
+
+on:
+  push:
+    branches:
+      - main
+      - day-04-github-actions
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+
+      - name: Print pesan sambutan
+        run: echo "Halo dari GitHub Actions! CI/CD pertamaku berhasil jalan."
+
+      - name: Cek isi repo
+        run: ls -la
