@@ -17,7 +17,7 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 | [Day 03](./day-03-git-workflow/notes.md) | Git & GitHub Workflow (branching, PR) | ✅ Selesai |
 | [Day 04](./day-04-github-actions/notes.md) | CI/CD Pipeline dengan GitHub Actions | ✅ Selesai |
 | [Day 05](./day-05-kubernetes-basics/notes.md) | Kubernetes Dasar (kind) | ✅ Selesai |
-| Day 06 | Infrastructure as Code — Terraform | 🔜 Belum |
+| [Day 06](./day-06-terraform/notes.md) | Infrastructure as Code — Terraform | ✅ Selesai |
 | Day 07 | Configuration Management — Ansible | 🔜 Belum |
 | Day 08 | Monitoring — Prometheus + Grafana | 🔜 Belum |
 
@@ -31,7 +31,7 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 - [x] Git & GitHub workflow (branching, PR)
 - [x] CI/CD pipeline dengan GitHub Actions
 - [x] Kubernetes dasar (kind / Minikube)
-- [ ] Infrastructure as Code — Terraform
+- [x] Infrastructure as Code — Terraform
 - [ ] Configuration management — Ansible
 - [ ] Monitoring — Prometheus + Grafana
 
