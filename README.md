@@ -19,7 +19,7 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 | [Day 05](./day-05-kubernetes-basics/notes.md) | Kubernetes Dasar (kind) | ✅ Selesai |
 | [Day 06](./day-06-terraform/notes.md) | Infrastructure as Code — Terraform | ✅ Selesai |
 | [Day 07](./day-07-ansible/notes.md) | Configuration Management — Ansible | ✅ Selesai |
-| Day 08 | Monitoring — Prometheus + Grafana | 🔜 Belum |
+| [Day 08](./day-08-monitoring/notes.md) | Monitoring — Prometheus + Grafana | ✅ Selesai |
 
 ---
 
@@ -33,7 +33,22 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 - [x] Kubernetes dasar (kind / Minikube)
 - [x] Infrastructure as Code — Terraform
 - [x] Configuration management — Ansible
-- [ ] Monitoring — Prometheus + Grafana
+- [x] Monitoring — Prometheus + Grafana
+
+---
+
+## 🎉 Roadmap Awal Selesai!
+
+Semua topik di roadmap awal sudah tuntas dipelajari — dari Linux CLI dasar sampai monitoring. Fondasi ini mencakup siklus DevOps dari ujung ke ujung: **Docker (containerization) → Git/CI-CD (delivery) → Kubernetes (orchestration) → Terraform (infrastructure) → Ansible (configuration) → Prometheus/Grafana (monitoring)**.
+
+## 🚀 Kemungkinan Topik Lanjutan
+
+- [ ] Terraform + cloud provider sungguhan (AWS/GCP free tier)
+- [ ] Kubernetes lebih lanjut (Helm, Ingress Controller, StatefulSet)
+- [ ] CI/CD lanjutan (multi-stage pipeline, deploy otomatis ke Kubernetes)
+- [ ] Logging terpusat (ELK Stack / Loki)
+- [ ] Security dasar (container scanning, secret management dengan Vault)
+- [ ] Sertifikasi (misal: CKA, Terraform Associate)
 
 ---
 
