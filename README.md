@@ -20,6 +20,7 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 | [Day 06](./day-06-terraform/notes.md) | Infrastructure as Code — Terraform | ✅ Selesai |
 | [Day 07](./day-07-ansible/notes.md) | Configuration Management — Ansible | ✅ Selesai |
 | [Day 08](./day-08-monitoring/notes.md) | Monitoring — Prometheus + Grafana | ✅ Selesai |
+| [Day 09](./day-09-kubernetes-l1/notes.md) | Kubernetes Lanjutan — Helm, Ingress, StatefulSet | ✅ Selesai |
 
 ---
 
@@ -44,7 +45,7 @@ Semua topik di roadmap awal sudah tuntas dipelajari — dari Linux CLI dasar sam
 ## 🚀 Kemungkinan Topik Lanjutan
 
 - [ ] Terraform + cloud provider sungguhan (AWS/GCP free tier)
-- [ ] Kubernetes lebih lanjut (Helm, Ingress Controller, StatefulSet)
+- [x] Kubernetes lebih lanjut (Helm, Ingress Controller, StatefulSet)
 - [ ] CI/CD lanjutan (multi-stage pipeline, deploy otomatis ke Kubernetes)
 - [ ] Logging terpusat (ELK Stack / Loki)
 - [ ] Security dasar (container scanning, secret management dengan Vault)
