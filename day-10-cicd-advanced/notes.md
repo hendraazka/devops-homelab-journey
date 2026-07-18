@@ -343,4 +343,3 @@ Setiap job baru berjalan jika job sebelumnya (`needs:`) sukses — jika `lint` g
 ---
 
 [⬅️ Kembali ke index](../README.md) | [⬅️ Day 09](../day-09-kubernetes-advanced/notes.md)
-
