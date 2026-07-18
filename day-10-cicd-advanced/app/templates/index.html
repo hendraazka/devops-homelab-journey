@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jadwal Sholat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <main>
+    <header>
+      <div class="header-row">
+        <div class="logo">🌙</div>
+        <h1>Jadwal Sholat</h1>
+        <button id="themeToggle" class="theme-toggle" aria-label="Ganti mode">🌙</button>
+      </div>
+      <p>Selamat datang. Jadwal harian dari Aladhan API (metode Kemenag RI).</p>
+    </header>
+
+    <div class="controls">
+      <select id="city">
+        {% for c in cities %}
+          <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+      <button id="locate">📍 Lokasi saya</button>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="hero" class="hero">
+      <div class="spinner"></div>
+      <p class="muted">Memuat jadwal sholat…</p>
+    </div>
+
+    <div id="grid" class="grid"></div>
+
+    <footer>Sumber: Aladhan API • Metode Kementerian Agama RI</footer>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
