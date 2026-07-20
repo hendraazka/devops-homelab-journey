@@ -27,6 +27,7 @@ Catatan progress belajar DevOps di homelab pribadi (Windows + WSL2), sebagai per
 | [Day 09](./day-09-kubernetes-advanced/notes.md) | Kubernetes Lanjutan — Helm, Ingress, StatefulSet | ✅ Selesai |
 | [Day 10](./day-10-cicd-advanced/notes.md) | CI/CD Lanjutan — Multi-stage Pipeline & Deploy ke K8s | ✅ Selesai |
 | [Day 11](./day-11-deploy-vercel/notes.md) | Deploy Production — GitLab ke Vercel | ✅ Selesai |
+| [Day 12](./day-12-security-basics/notes.md) | Security Dasar — Container Scanning & Vault | ✅ Selesai |
 
 ---
 
@@ -54,7 +55,7 @@ Semua topik di roadmap awal sudah tuntas dipelajari — dari Linux CLI dasar sam
 - [x] Kubernetes lebih lanjut (Helm, Ingress Controller, StatefulSet)
 - [x] CI/CD lanjutan (multi-stage pipeline, deploy otomatis ke Kubernetes)
 - [ ] Logging terpusat (ELK Stack / Loki)
-- [ ] Security dasar (container scanning, secret management dengan Vault)
+- [x] Security dasar (container scanning, secret management dengan Vault)
 - [ ] Sertifikasi (misal: CKA, Terraform Associate)
 
 ---
@@ -76,3 +77,4 @@ Semua topik di roadmap awal sudah tuntas dipelajari — dari Linux CLI dasar sam
 ---
 
 *Catatan pribadi — belajar DevOps dari nol, homelab di laptop Windows. Setiap folder `day-XX` berisi catatan detail, konsep, dan perintah yang dipelajari pada hari tersebut.*
+
