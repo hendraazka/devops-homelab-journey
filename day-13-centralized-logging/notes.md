@@ -236,7 +236,7 @@ Setelah alerting dasar berhasil (email saja), notifikasi diperluas ke **Telegram
 ### Setup Bot Telegram
 
 1. Chat **@BotFather** di Telegram → `/newbot` → beri nama dan username bot
-2. BotFather memberi **Bot Token** (format `123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`)
+2. BotFather memberi **Bot Token** (format `123456789:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`)
 3. Kirim pesan apa saja ke bot yang baru dibuat, lalu buka `https://api.telegram.org/bot<TOKEN>/getUpdates` untuk mendapatkan **Chat ID**
 
 ### Contact Point Telegram di Grafana
