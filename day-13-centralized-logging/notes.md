@@ -229,4 +229,85 @@ Email menunjukkan nilai `A=20 C=1` — 20 log error terkumpul dalam window, kond
 
 ---
 
+## 📱 Multi-Channel Alerting: Telegram + Email dengan Template Custom
+
+Setelah alerting dasar berhasil (email saja), notifikasi diperluas ke **Telegram** sekaligus dipertahankan di **Email**, dengan format pesan yang disesuaikan (bukan template default Grafana yang generic).
+
+### Setup Bot Telegram
+
+1. Chat **@BotFather** di Telegram → `/newbot` → beri nama dan username bot
+2. BotFather memberi **Bot Token** (format `123456789:AAHxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`)
+3. Kirim pesan apa saja ke bot yang baru dibuat, lalu buka `https://api.telegram.org/bot<TOKEN>/getUpdates` untuk mendapatkan **Chat ID**
+
+### Contact Point Telegram di Grafana
+
+```
+Alerting → Contact points → Add contact point
+Integration: Telegram
+BOT API Token: <token dari BotFather>
+Chat ID: <chat id dari getUpdates>
+Parse Mode: Markdown
+```
+
+### Notification Template Custom
+
+Dibuat agar pesan lebih ringkas dan relevan (bukan field generic seperti `Environment`/`Service` yang selalu kosong):
+
+```
+{{ define "prayer_app_alert" }}
+🚨 *{{ .Status | toUpper }}* - Prayer App Alert
+━━━━━━━━━━━━━━━━━━━━
+{{ range .Alerts }}
+📌 *Alert:* {{ .Labels.alertname }}
+📁 *Folder:* {{ .Labels.grafana_folder }}
+⏰ *Waktu:* {{ .StartsAt.Format "02 Jan 2006 15:04:05" }}
+📝 *Detail:* {{ .Annotations.summary }}
+{{ end }}
+━━━━━━━━━━━━━━━━━━━━
+{{ end }}
+```
+
+Diterapkan di kolom **Message** pada contact point Telegram:
+```
+{{ template "prayer_app_alert" . }}
+```
+
+### Menyediakan Data untuk `{{ .Annotations.summary }}`
+
+Field `summary` diisi di bagian **Annotations** pada alert rule (bukan di contact point) agar template bisa menampilkan angka error yang sebenarnya:
+```
+Terjadi {{ $values.A }} error API dalam 5 menit terakhir pada aplikasi Prayer App.
+```
+
+### Hasil Akhir — Notifikasi Sukses di Kedua Channel
+
+**Telegram:**
+![Notifikasi Telegram dengan detail lengkap](./assets/telegram-final-success.jpeg)
+
+**Email:**
+![Notifikasi Email dengan detail lengkap](./assets/email-final-success.jpeg)
+
+Kedua notifikasi menampilkan data yang identik dan akurat:
+```
+Alert: Prayer App - High Error Rate
+Folder: Prayer App Alerts
+Waktu: 23 Jul 2026 02:55:10
+Detail: Terjadi 19 error API dalam 5 menit terakhir pada aplikasi Prayer App.
+```
+
+---
+
+## 🔧 Troubleshooting Tambahan (Multi-Channel Alerting)
+
+| Masalah | Penyebab | Solusi |
+|---|---|---|
+| `invalid_template: unexpected EOF` saat menyimpan notification template | Setiap `{{ define }}` di template Go **wajib** memiliki `{{ end }}` penutup tersendiri, terpisah dari `{{ end }}` milik `{{ range }}` di dalamnya — satu `{{ end }}` sempat terlewat | Tambahkan `{{ end }}` kedua di baris paling akhir untuk menutup blok `define` |
+| Preview template selalu menampilkan data dummy (`InstanceDown`, `CpuUsage`) | Grafana selalu memakai contoh data generic saat preview template, tidak bisa diganti dengan data alert asli hanya lewat preview | Tombol "Test" pada contact point tidak merepresentasikan data asli — verifikasi sesungguhnya harus lewat alert yang benar-benar Firing dari kondisi nyata |
+| Warning "Telegram messages are limited to 4096 characters" saat memilih Parse Mode Markdown | Peringatan preventif bawaan Grafana untuk kasus banyak alert digabung dalam satu notifikasi | Diabaikan dengan aman — template hanya berisi satu alert per notifikasi dengan pesan pendek, jauh dari batas karakter |
+| Notifikasi tetap memakai data dummy meski sudah edit template | Ada beberapa Contact Point berbeda dibuat selama eksperimen (`Telegram Notification`, `Telegram Email Notification`, `test-alert`), namun alert rule masih terhubung ke contact point yang lama (Telegram-only) | Ubah field **Contact point** pada alert rule agar mengarah ke contact point yang sudah diperbarui (`Telegram Email Notification`) |
+| Contact point lama tidak bisa dihapus | Grafana mencegah penghapusan contact point yang berstatus "Used by N alert rules" untuk mencegah alert rule kehilangan tujuan notifikasi | Pindahkan dulu alert rule ke contact point baru hingga status berubah menjadi "Unused", baru contact point lama bisa dihapus |
+| Kolom `Detail:` pada notifikasi selalu kosong meski template sudah benar | Field `summary` yang dirujuk template (`{{ .Annotations.summary }}`) belum diisi di bagian **Annotations** pada alert rule | Tambahkan annotation `Summary` di halaman edit alert rule dengan isi `Terjadi {{ $values.A }} error API dalam 5 menit terakhir pada aplikasi Prayer App.` |
+
+---
+
 [⬅️ Kembali ke index](../README.md) | [⬅️ Day 12](../day-12-security-basics/notes.md)
